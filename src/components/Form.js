@@ -19,6 +19,7 @@ const StyledInput = styled.input`
     border-radius: 5px;
     border: none;
     margin: 5% 0;
+    font-size: 1rem;
 `
 
 const StyledSelect = styled.select`
@@ -27,20 +28,29 @@ const StyledSelect = styled.select`
     border-radius: 5px;
     border: none;
     margin: 5% 0;
+    font-size: 1rem;
+    &:hover {
+        cursor: pointer;
+    }
 `
 
 const StyledButton = styled.button`
-    margin-top: 10%;
+    margin-top: 5%;
     background-color: #62DAFB;
     border-radius: 5px;
     border: none;
     width: 35%;
     height: 5vh;
     font-size: 1.5rem;
+    &:hover{
+        background-color: #fb8362;
+        color: white;
+        cursor: pointer;
+    }
 `
 
 const Form = props => {
-    const [teamMember, setTeamMember] = useState({
+    const [newTeamMember, setNewTeamMember] = useState({
         id: Date.now(),
         name: '',
         email: '',
@@ -48,8 +58,8 @@ const Form = props => {
     })
 
     const changeHandler = (event) => {
-        setTeamMember({
-            ...teamMember,
+        setNewTeamMember({
+            ...newTeamMember,
             [event.target.name]: event.target.value
         })
     }
@@ -58,12 +68,13 @@ const Form = props => {
         <StyledForm
             onSubmit={event => {
                 event.preventDefault();
-                props.addTeamMember(teamMember)
-                setTeamMember({
+                alert(`${newTeamMember.name}... ${newTeamMember.email}... ${newTeamMember.role}`)
+                props.addTeamMember(newTeamMember)
+                setNewTeamMember({
                     id: Date.now(),
                     name: '',
                     email: '',
-                    role: '',
+                    role: ''
                 })
             }}
         >
@@ -73,7 +84,7 @@ const Form = props => {
                 type='text' 
                 name='name' 
                 placeholder='Please Enter Your Full Name' 
-                value={teamMember.name}
+                value={newTeamMember.name}
                 onChange={changeHandler}
             />
 
@@ -83,18 +94,18 @@ const Form = props => {
                 type='email' 
                 name='email' 
                 placeholder='Please Enter Your Email' 
-                value={teamMember.email}
+                value={newTeamMember.email}
                 onChange={changeHandler}
             />
 
             <StyledLabel htmlFor='role'>Select Your Role: </StyledLabel>
-            <StyledSelect id='role' name='role'>
+            <StyledSelect id='role' name='role' value={newTeamMember.role} onChange={changeHandler}>
                 <option value=''>--Please Choose An Option--</option>
-                <option value='frontend'>Frontend Developer</option>
-                <option value='backend'>Backend Developer</option>
-                <option value='css'>CSS Specialist</option>
-                <option value='react'>React Specialist</option>
-                <option value='lead'>Project Lead</option>
+                <option value='Frontend Developer'>Frontend Developer</option>
+                <option value='Backend Developer'>Backend Developer</option>
+                <option value='CSS Specialist'>CSS Specialist</option>
+                <option value='React Specialist'>React Specialist</option>
+                <option value='Project Lead'>Project Lead</option>
             </StyledSelect>
 
             <StyledButton type='submit'>Submit</StyledButton>

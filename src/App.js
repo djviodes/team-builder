@@ -6,10 +6,10 @@ import './App.css';
 function App() {
   const [teamMember, setTeamMembers] = useState([
     {
-      id: 1,
-      name: 'David Viodes',
-      email: 'djviodes26@gmail.com',
-      role: 'React Specialist'
+      id: Date.now(),
+      name: '',
+      email: '',
+      role: ' '
     }
   ])
 
