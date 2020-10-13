@@ -22,6 +22,15 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Form addTeamMember={addTeamMember} />
+        {teamMember.map(item => {
+          return (
+            <div>
+              <h1>{item.name}</h1>
+              <h2>{item.email}</h2>
+              <h2>{item.role}</h2>
+            </div>
+          )
+        })}
       </header>
     </div>
   );
